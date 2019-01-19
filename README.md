@@ -1,2 +1,0 @@
-# Gramplr
-Created with CodeSandbox
