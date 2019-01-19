@@ -31,18 +31,18 @@ function App() {
   ];
 
   return (
-    <div className="App">
-      <CardWrapper style={{ top: "10%" }}>
+    <div>
+      <CardWrapper>
         {pairs.map(item => {
           return Math.random() > 0.5 ? (
             <div>
-              <Card style={{ height: "25vh" }}>item.right</Card>
-              <BottomCard style={{ height: "25vh" }}>item.wrong</BottomCard>
+              <Card>item.right</Card>
+              <BottomCard>item.wrong</BottomCard>
             </div>
           ) : (
             <div>
-              <Card style={{ height: "25vh" }}>item.wrong</Card>
-              <BottomCard style={{ height: "25vh" }}>item.right</BottomCard>
+              <Card>item.wrong</Card>
+              <BottomCard>item.right</BottomCard>
             </div>
           );
         })}

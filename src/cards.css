@@ -13,7 +13,7 @@ body {
   height: 30vh;
 }
 
-.container {
+container {
   width: 100%;
   height: calc(100vh - 16px);
   overflow: hidden;
@@ -42,12 +42,14 @@ body {
   -ms-flex-align: end;
   align-items: center;
   z-index: 1;
+  margin: 0 auto;
 }
 .container .cards_container .card_container {
   display: inline-block;
   width: 90vw;
   max-width: 400px;
   height: 70vh;
+
   background: #fff;
   border: 1px solid #e7e7e7;
   border-radius: 8px;
@@ -61,17 +63,16 @@ body {
 }
 
 .top_card_container {
-  background: #f00;
   display: inline-block;
   width: 90vw;
   max-width: 400px;
-  height: 70vh;
+  height: 30vh;
   background: #fff;
-  border: 1px solid #e7e7e7;
+  border: 2px solid #777;
   border-radius: 8px;
   overflow: hidden;
   position: absolute;
-  top: 100px;
+  top: 10%;
   will-change: transform;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -80,17 +81,16 @@ body {
 }
 
 .bottom_card_container {
-  background: #f00;
   display: inline-block;
   width: 90vw;
   max-width: 400px;
-  height: 70vh;
+  height: 30vh;
   background: #fff;
-  border: 1px solid #e7e7e7;
+  border: 1px solid #eee;
   border-radius: 8px;
   overflow: hidden;
   position: absolute;
-  top: 400px;
+  top: 55%;
   will-change: transform;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;

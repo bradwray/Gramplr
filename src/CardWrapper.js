@@ -65,7 +65,7 @@ class CardWrapper extends Component {
 
   render() {
     return (
-      <div className="container" style={this.props.style}>
+      <div className="container">
         <div className="cards_container">
           {this.renderCards()}
           {this.renderEndCard()}
