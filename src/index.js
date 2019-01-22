@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div>
-      <CardWrapper>
+      <CardWrapper className="wrap">
         {pairs.map(item => {
           return Math.random() > 0.5 ? (
             <div>

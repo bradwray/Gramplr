@@ -1,8 +1,10 @@
 body {
   font-family: sans-serif;
   text-align: center;
+  justify-content: center;
   background: #333;
   width: 100%;
+  overflow: hidden;
 }
 
 .topCard {
@@ -13,7 +15,7 @@ body {
   height: 30vh;
 }
 
-container {
+.container {
   width: 100%;
   height: calc(100vh - 16px);
   overflow: hidden;
@@ -72,7 +74,10 @@ container {
   border-radius: 8px;
   overflow: hidden;
   position: absolute;
-  top: 10%;
+  top: 15%;
+  left: 0;
+  right: 0;
+  margin: auto;
   will-change: transform;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -86,11 +91,14 @@ container {
   max-width: 400px;
   height: 30vh;
   background: #fff;
-  border: 1px solid #eee;
+  border: 2px solid #777;
   border-radius: 8px;
   overflow: hidden;
   position: absolute;
   top: 55%;
+  left: 0px;
+  right: 0px;
+  margin: auto;
   will-change: transform;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
