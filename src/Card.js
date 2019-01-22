@@ -12,41 +12,34 @@ export default class Card extends Component {
   componentDidMount() {}
 
   onPan(event) {
-    if (this.props.isSwipeEnabled !== false) {
-      if (
-        (this.props.isLeftSwipeEnabled !== false && event.deltaX <= 0) ||
-        (this.props.isRightSwipeEnabled !== false && event.deltaX >= 0)
-      ) {
-        this.state.classList.push("top_moving");
-        if (event.deltaX === 0) return;
-        if (event.center.x === 0 && event.center.y === 0) return;
-        var xMulti = event.deltaX * 0.03;
-        var yMulti = event.deltaY / 80;
-        var rotate = xMulti * yMulti;
-        event.target.style.transform =
-          "translate(" +
-          event.deltaX +
-          "px, " +
-          event.deltaY +
-          "px) rotate(" +
-          rotate +
-          "deg)";
-      }
+    if (event.deltaX <= 0 || event.deltaX >= 0) {
+      if (event.deltaX === 0) return;
+      if (event.center.x === 0 && event.center.y === 0) return;
+      var xMulti = event.deltaX * 0.03;
+      var yMulti = event.deltaY / 80;
+      var rotate = xMulti * yMulti;
+      event.target.style.transform =
+        "translate(" +
+        event.deltaX +
+        "px, " +
+        event.deltaY +
+        "px) rotate(" +
+        rotate +
+        "deg)";
     }
   }
 
   onPanEnd(event) {
+    console.log(event);
     if (this.props.isSwipeEnabled !== false) {
       if (
         (this.props.isLeftSwipeEnabled !== false && event.deltaX <= 0) ||
         (this.props.isRightSwipeEnabled !== false && event.deltaX >= 0)
       ) {
-        var newClass = this.state.classList.filter(s => s !== "top_moving");
-        this.setState({ classList: newClass });
         var moveOutWidth = document.body.clientWidth;
         var keep = Math.abs(event.deltaX) < 300;
-        event.target.classList.toggle("bottom_removed", !keep);
         if (keep) {
+          console.log("keep");
           event.target.style.transform = "";
         } else {
           var endX = Math.max(

@@ -21,10 +21,10 @@ class CardWrapper extends Component {
       ".top_card_container .bottom_card_container"
     );
     var topCards = document.querySelectorAll(
-      ".top_card_container:not(.removed)"
+      ".top_card_container:not(.top_removed)"
     );
     var bottomCards = document.querySelectorAll(
-      ".bottom_card_container:not(.removed)"
+      ".bottom_card_container:not(.bottom_removed)"
     );
 
     topCards.forEach(function(card, index) {
