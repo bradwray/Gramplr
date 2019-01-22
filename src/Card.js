@@ -11,10 +11,8 @@ export default class Card extends Component {
 
   componentDidMount() {}
 
-  onPan(event) {
-    if (event.deltaX <= 0 || event.deltaX >= 0) {
-      if (event.deltaX === 0) return;
-      if (event.center.x === 0 && event.center.y === 0) return;
+  onPanTop(event) {
+    if (event.deltaX < 0 || event.deltaX > 0) {
       var xMulti = event.deltaX * 0.03;
       var yMulti = event.deltaY / 80;
       var rotate = xMulti * yMulti;
@@ -29,46 +27,39 @@ export default class Card extends Component {
     }
   }
 
-  onPanEnd(event) {
-    console.log(event);
-    if (this.props.isSwipeEnabled !== false) {
-      if (
-        (this.props.isLeftSwipeEnabled !== false && event.deltaX <= 0) ||
-        (this.props.isRightSwipeEnabled !== false && event.deltaX >= 0)
-      ) {
-        var moveOutWidth = document.body.clientWidth;
-        var keep = Math.abs(event.deltaX) < 300;
-        if (keep) {
-          console.log("keep");
-          event.target.style.transform = "";
-        } else {
-          var endX = Math.max(
-            Math.abs(event.velocityX) * moveOutWidth,
-            moveOutWidth
-          );
-          var toX = event.deltaX > 0 ? endX : -endX;
-          var endY = Math.abs(event.velocityY) * moveOutWidth;
-          var toY = event.deltaY > 0 ? endY : -endY;
-          var xMulti = event.deltaX * 0.03;
-          var yMulti = event.deltaY / 80;
-          var rotate = xMulti * yMulti;
-          event.target.style.transform =
-            "translate(" +
-            toX +
-            "px, " +
-            (toY + event.deltaY) +
-            "px) rotate(" +
-            rotate +
-            "deg)";
-          // DO SWIPE ACTIONS
-          this.props.superOnSwipe();
-          if (this.props.onSwipe) this.props.onSwipe(this.props.data);
-          if (toX < 0 && this.props.onSwipeLeft) {
-            this.props.onSwipeLeft(this.props.data);
-          } else if (this.props.onSwipeRight) {
-            this.props.onSwipeRight(this.props.data);
-          }
-        }
+  onPanTopEnd(event) {
+    var moveOutWidth = document.body.clientWidth;
+    var keep = Math.abs(event.deltaX) < 300;
+    event.target.classList.toggle("top_removed", !keep);
+    if (keep) {
+      //console.log("keep");
+      event.target.style.transform = "";
+    } else {
+      //console.log("gone");
+      var endX = Math.max(
+        Math.abs(event.velocityX) * moveOutWidth,
+        moveOutWidth
+      );
+      var toX = event.deltaX > 0 ? endX : -endX;
+      var endY = Math.abs(event.velocityY) * moveOutWidth;
+      var toY = 100;
+      var xMulti = event.deltaX * 0.03;
+      var yMulti = event.deltaY / 80;
+      var rotate = xMulti * yMulti;
+      event.target.style.transform =
+        "translate(" +
+        toX +
+        "px, " +
+        (toY + event.deltaY) +
+        "px) rotate(" +
+        rotate +
+        "deg)";
+      // DO SWIPE ACTIONS
+      //this.props.superOnSwipe();
+      if (toX < 0) {
+        this.props.onSwipeLeft();
+      } else if (this.props.onSwipeRight) {
+        this.props.onSwipeRight();
       }
     }
   }
@@ -80,8 +71,9 @@ export default class Card extends Component {
   render() {
     return (
       <Hammer
-        onPan={this.onPan.bind(this)}
-        onPanEnd={this.onPanEnd.bind(this)}
+        key="top"
+        onPan={this.onPanTop.bind(this)}
+        onPanEnd={this.onPanTopEnd.bind(this)}
         onDoubleTap={this.onDoubleTap.bind(this)}
       >
         <div className={this.state.classList.join(" ")}>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./cards.css";
 
-class BottomCardWrapper extends Component {
+class CardWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -18,11 +18,22 @@ class BottomCardWrapper extends Component {
   setupCards() {
     var container = document.querySelector(".container");
     var allCards = document.querySelectorAll(
-      ".card_container .bottom_card_container"
+      ".top_card_container .bottom_card_container"
     );
-    var newCards = document.querySelectorAll(".card_container:not(.removed)");
+    var topCards = document.querySelectorAll(
+      ".top_card_container:not(.top_removed)"
+    );
+    var bottomCards = document.querySelectorAll(
+      ".bottom_card_container:not(.bottom_removed)"
+    );
 
-    newCards.forEach(function(card, index) {
+    topCards.forEach(function(card, index) {
+      card.style.zIndex = allCards.length - index;
+      card.style.transform =
+        "scale(" + (20 - index) / 20 + ") translateY(-" + 20 * index + "px)";
+      card.style.opacity = (10 - index) / 10;
+    });
+    bottomCards.forEach(function(card, index) {
       card.style.zIndex = allCards.length - index;
       card.style.transform =
         "scale(" + (20 - index) / 20 + ") translateY(-" + 20 * index + "px)";
@@ -54,7 +65,7 @@ class BottomCardWrapper extends Component {
 
   render() {
     return (
-      <div className="container" style={this.props.style}>
+      <div className="container">
         <div className="cards_container">
           {this.renderCards()}
           {this.renderEndCard()}
@@ -64,4 +75,4 @@ class BottomCardWrapper extends Component {
   }
 }
 
-export default BottomCardWrapper;
+export default CardWrapper;

@@ -46,7 +46,7 @@ class CardWrapper extends Component {
   renderCards() {
     return React.Children.map(this.props.children, child => {
       return React.cloneElement(child, {
-        superOnSwipe: this.superOnSwipe.bind(this)
+        superonswipe: this.superOnSwipe.bind(this)
       });
     });
   }
